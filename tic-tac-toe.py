@@ -12,7 +12,7 @@ game_still_going = True
 winner = None
 
 # Tells us who the current player is (X goes first)
-current_player = "X"
+current_player = "Y"
 
 
 # ------------- Functions ---------------
@@ -34,7 +34,7 @@ def play_game():
         flip_player()
 
     # Since the game is over, print the winner or tie
-    if winner == "X" or winner == "O":
+    if winner == "Y" or winner == "O":
         print(winner + " won.")
     elif winner == None:
         print("Tie.")
@@ -188,11 +188,11 @@ def flip_player():
     # Global variables we need
     global current_player
     # If the current player was X, make it O
-    if current_player == "X":
+    if current_player == "Y":
         current_player = "O"
     # Or if the current player was O, make it X
     elif current_player == "O":
-        current_player = "X"
+        current_player = "Y"
 
 
 # ------------ Start Execution -------------

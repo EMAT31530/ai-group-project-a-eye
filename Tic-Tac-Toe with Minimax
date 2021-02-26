@@ -147,7 +147,7 @@ board = {1: ' ', 2: ' ', 3: ' ',
          7: ' ', 8: ' ', 9: ' '}
 
 printBoard(board)
-print("Computer goes first! Good luck. You will need it!!.")
+print("Computer goes first! Good luck with the game!")
 print("Positions are as follow:")
 print("1, 2, 3 ")
 print("4, 5, 6 ")

@@ -105,14 +105,22 @@ def compMove():
     beta = math.inf
     bestMove = 0
     time1 = time.time()
+    current_step = 0
     for key in board.keys():
+        current_step += 1
         if (board[key] == ' '):
             board[key] = bot
             score = minimax(board, 0, alpha, beta, False)
+            #print (score, board)
             board[key] = ' '
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
+
+        #if current_step > 3:
+            #break
+
+
     print(time.time() - time1)
 
     insertLetter(bot, bestMove)
@@ -131,15 +139,22 @@ def minimax(board, depth,alpha,beta,isMaximizing):
 
     if (isMaximizing):
         bestScore = -math.inf
+        current_step = 0
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = bot
                 score = minimax(board, depth + 1,alpha, beta, False)
                 board[key] = ' '
                 alpha = max(alpha,score )
+                print(score, board, "\n")
+                current_step += 1
+
                 if (score > bestScore):
                     bestScore = score
                 if beta <= alpha:
+                    break
+
+                if current_step < 4:
                     break
         return bestScore
 

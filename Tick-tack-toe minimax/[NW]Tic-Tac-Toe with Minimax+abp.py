@@ -122,7 +122,7 @@ def compMove():
 
 #defines minimax algorithm
 def minimax(board, depth,alpha,beta,isMaximizing):
-    #current_depth = 0
+    current_depth = 0
     if (checkWhichMarkWon(bot)):
         return 1
     elif (checkWhichMarkWon(player)):
@@ -133,7 +133,6 @@ def minimax(board, depth,alpha,beta,isMaximizing):
     if (isMaximizing):
         bestScore = -math.inf
 
-
         for key in board.keys():
 
             if (board[key] == ' '):
@@ -142,13 +141,12 @@ def minimax(board, depth,alpha,beta,isMaximizing):
 
                 #print(current_depth)
                 #current_depth += 1
-                #print(score,board)
+                print('maximising')
+                print(score,board)
+                printBoard(board)
 
                 board[key] = ' '
                 alpha = max(alpha,score )
-
-
-
 
 
                 if (score > bestScore):
@@ -165,6 +163,12 @@ def minimax(board, depth,alpha,beta,isMaximizing):
                 board[key] = player
                 score = minimax(board, depth + 1,alpha,beta, True)
                 board[key] = ' '
+
+                print('minimising')
+                print(score, board)
+                printBoard(board)
+
+
                 if (score < bestScore):
                     bestScore = score
                 beta = min(beta,score)

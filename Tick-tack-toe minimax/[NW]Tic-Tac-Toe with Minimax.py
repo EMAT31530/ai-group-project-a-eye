@@ -106,30 +106,34 @@ def compMove():
             #print(board)  # nathan added
             printBoard(board)  # nathan added
 
+            print('call minimax')
             score = minimax(board, 0, False) #board is 0depth and minimising, output score at end of recursive (should be better than -800)
             board[key] = ' ' #clear the move
             if (score > bestScore):
                 bestScore = score
                 print('end of comp move (reached terminal state)')
-                print('compmovefunction bestScore:',bestScore)
+                print('compmovefunction bestScore (after comp move done):',bestScore)
                 print('next comp move...')
                 bestMove = key #if the score is better than -800 then this is now bestscore and bestmove
-
+    print('final bestscore:',bestScore)
     insertLetter(bot, bestMove)
     return
 
 #defines minimax algorithm
 def minimax(board, depth, isMaximizing):
     if (checkWhichMarkWon(bot)): #for end states only?
+        print('found a win and break out of minimax loop for that minimax key and finish the maximising or minimising code ')
         return 1
     elif (checkWhichMarkWon(player)):
+        print('found a loss and break out of minimax loop for that minimax key and finish the maximising or minimising code')
         return -1
     elif (checkDraw()):
+        print('found a draw and break out of minimax loop for that minimax key and finish the maximising or minimising code')
         return 0
 
     if (isMaximizing):
         bestScore = -800
-        print('maximising,','bestScore:',bestScore)  # nathan added
+        print('maximising,','bestScore (before maximising):',bestScore)  # nathan added
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = bot #make the move
@@ -138,15 +142,17 @@ def minimax(board, depth, isMaximizing):
                 #print(board) # nathan added
                 printBoard(board)# nathan added
 
-
+                print('call minimise')
                 score = minimax(board, depth + 1, False) #recursive call minimax function but depth +1 and now minimising
 
                 board[key] = ' ' #clear the move
-
+                print('score after minimax on that key (maximising part):',score)
+                print('current bestScore:', bestScore)
                 if (score > bestScore):
                     bestScore = score
+                    print('changed bestScore to:', bestScore)
 
-        print('bestScore:',bestScore) # nathan added
+        print('bestScore (after all moves tried with minimax(maximising part):', bestScore)  # nathan added
         print("\n")
         print("\n")
         print("\n")
@@ -156,7 +162,7 @@ def minimax(board, depth, isMaximizing):
     else:
         bestScore = 800
 
-        print('minimising,','bestScore:',bestScore) #nathan added
+        print('minimising,','bestScore (before minimising):',bestScore) #nathan added
 
         for key in board.keys():
             if (board[key] == ' '):
@@ -166,14 +172,18 @@ def minimax(board, depth, isMaximizing):
                 #print(board)#nathan added
                 printBoard(board)#nathan added
 
-
+                print('call maximising')
                 score = minimax(board, depth + 1, True) #now call mimimax again but maximising (recursive)
 
                 board[key] = ' ' #clear move
+                print('score after minimax on that key (minimising part):',score)
+                print('current bestScore:', bestScore)
 
                 if (score < bestScore):
                     bestScore = score
-        print('bestScore',bestScore) #nathan added
+                    print('changed bestScore to:', bestScore)
+
+        print('bestScore (after all moves tried with minimax (minimising part):', bestScore)  # nathan added
         print("\n")
         print("\n")
         print("\n")

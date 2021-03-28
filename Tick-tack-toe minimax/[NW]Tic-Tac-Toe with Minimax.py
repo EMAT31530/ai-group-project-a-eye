@@ -109,11 +109,12 @@ def compMove():
             print('call minimax')
             score = minimax(board, 0, False) #board is 0depth and minimising, output score at end of recursive (should be better than -800)
             board[key] = ' ' #clear the move
+            print('end of comp move (reached terminal state)')
+            print('compmovefunction bestScore (after comp move done):', bestScore, 'bestMove after comp move:', key)
+            print('next comp move...')
             if (score > bestScore):
                 bestScore = score
-                print('end of comp move (reached terminal state)')
-                print('compmovefunction bestScore (after comp move done):',bestScore)
-                print('next comp move...')
+
                 bestMove = key #if the score is better than -800 then this is now bestscore and bestmove
     print('final bestscore:',bestScore)
     insertLetter(bot, bestMove)
@@ -122,13 +123,13 @@ def compMove():
 #defines minimax algorithm
 def minimax(board, depth, isMaximizing):
     if (checkWhichMarkWon(bot)): #for end states only?
-        print('found a win and break out of minimax loop for that minimax key and finish the maximising or minimising code ')
-        return 1
+        print('found a win and do not execute anymore of minimax function for that iteration. Return +1 as score output to previously called minimax')
+        return 1 #so rest of function is not executed as soon as something is returned
     elif (checkWhichMarkWon(player)):
-        print('found a loss and break out of minimax loop for that minimax key and finish the maximising or minimising code')
+        print('found a loss and do not execute anymore of minimax function for that iteration. Return -1 as score output to previously called minimax')
         return -1
     elif (checkDraw()):
-        print('found a draw and break out of minimax loop for that minimax key and finish the maximising or minimising code')
+        print('found a draw and do not execute anymore of minimax function for that iteration. Return 0 as score output to previously called minimax')
         return 0
 
     if (isMaximizing):
@@ -152,12 +153,9 @@ def minimax(board, depth, isMaximizing):
                     bestScore = score
                     print('changed bestScore to:', bestScore)
 
-        print('bestScore (after all moves tried with minimax(maximising part):', bestScore)  # nathan added
-        print("\n")
-        print("\n")
-        print("\n")
-
+        print('bestScore (after all moves tried with minimax(maximising part) - propogate score back:', bestScore)  # nathan added
         return bestScore
+
 
     else:
         bestScore = 800
@@ -183,11 +181,9 @@ def minimax(board, depth, isMaximizing):
                     bestScore = score
                     print('changed bestScore to:', bestScore)
 
-        print('bestScore (after all moves tried with minimax (minimising part):', bestScore)  # nathan added
-        print("\n")
-        print("\n")
-        print("\n")
+        print('bestScore (after all moves tried with minimax (minimising part) - propogate score back:', bestScore)  # nathan added
         return bestScore
+
 
 
 #board = {1: ' ', 2: ' ', 3: ' ',

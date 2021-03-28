@@ -122,6 +122,7 @@ def compMove():
 
 #defines minimax algorithm
 def minimax(board, depth, isMaximizing):
+    maxDepth = 0
     if (checkWhichMarkWon(bot)): #for end states only?
         print('found a win and do not execute anymore of minimax function for that iteration. Return +1 as score output to previously called minimax')
         return 1 #so rest of function is not executed as soon as something is returned
@@ -143,8 +144,13 @@ def minimax(board, depth, isMaximizing):
                 #print(board) # nathan added
                 printBoard(board)# nathan added
 
-                print('call minimise')
-                score = minimax(board, depth + 1, False) #recursive call minimax function but depth +1 and now minimising
+                if depth < maxDepth:
+                    print('call minimise')
+                    score = minimax(board, depth + 1, False) #recursive call minimax function but depth +1 and now minimising
+                else:
+                    print('max depth of',maxDepth,'reached')
+                    print('bestScore:',bestScore)
+                    return bestScore
 
                 board[key] = ' ' #clear the move
                 print('score after minimax on that key (maximising part):',score)
@@ -170,8 +176,13 @@ def minimax(board, depth, isMaximizing):
                 #print(board)#nathan added
                 printBoard(board)#nathan added
 
-                print('call maximising')
-                score = minimax(board, depth + 1, True) #now call mimimax again but maximising (recursive)
+                if depth < maxDepth:
+                    print('call maximising')
+                    score = minimax(board, depth + 1, True) #now call mimimax again but maximising (recursive)
+                else:
+                    print('max depth of',maxDepth,'reached')
+                    print('bestScore:',bestScore)
+                    return bestScore
 
                 board[key] = ' ' #clear move
                 print('score after minimax on that key (minimising part):',score)

@@ -26,15 +26,15 @@ def printBoard(board) :
 
 #Checks for winner based on current board
 def isWinner(bo, le) :
-    return (bo[7] == le and bo[8] == le and bo[9] == le) or
-    (bo[4] == le and bo[5] == le and bo[6] == le) or
-    (bo[1] == le and bo[2] == le and bo[3] == le) or
-    (bo[1] == le and bo[4] == le and bo[7] == le) or
-    (bo[2] == le and bo[5] == le and bo[8] == le) or
-    (bo[3] == le and bo[6] == le and bo[9] == le) or
-    (bo[1] == le and bo[4] == le and bo[7] == le) or
-    (bo[1] == le and bo[5] == le and bo[9] == le) or
-    (bo[3] == le and bo[5] == le and bo[7] == le)
+    return (bo[7] == le and bo[8] == le and bo[9] == le) or \
+           (bo[4] == le and bo[5] == le and bo[6] == le) or \
+           (bo[1] == le and bo[2] == le and bo[3] == le) or \
+           (bo[1] == le and bo[4] == le and bo[7] == le) or \
+           (bo[2] == le and bo[5] == le and bo[8] == le) or \
+           (bo[3] == le and bo[6] == le and bo[9] == le) or \
+           (bo[1] == le and bo[4] == le and bo[7] == le) or \
+           (bo[1] == le and bo[5] == le and bo[9] == le) or \
+           (bo[3] == le and bo[5] == le and bo[7] == le)
 
 def playerMove () :
     run = True #initial set run to true
@@ -73,6 +73,7 @@ def main() :
     print("4, 5, 6 ")
     print("7, 8, 9 ")
     printBoard()
+
 
     while not(isBoardFull(board)): #If board is full- implies game is tied so dont continue while loop
         if not(isWinner(board, 'O')) : #Check to see if computer has won- straight line of o's

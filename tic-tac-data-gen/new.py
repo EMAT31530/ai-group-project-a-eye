@@ -2,20 +2,33 @@ player = 'O'
 bot = 'X'
 
 #func to allow user to input
-def playerMove():
+def playerMove(board):
     position = int(input("Enter the position for 'O':  "))
-    insertLetter(player, position)
+    insertLetter(player, position, board)
     return
 
+def printBoard(board) :
+    print('   |   |')
+    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+    print('   |   |')
+
 #func to insert x or o into free position
-def insertLetter(letter, position):
-    if spaceIsFree(position):
+def insertLetter(letter, position, board):
+    if spaceIsFree(position, board):
         board[position] = letter
         printBoard(board)
-        if (checkDraw()):
+        if (checkDraw(board)):
             print("Draw!")
             exit()
-        if checkForWin():
+        if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
                 exit()
@@ -27,18 +40,18 @@ def insertLetter(letter, position):
     else:
         print("Can't insert there!")
         position = int(input("Please enter new position:  "))
-        insertLetter(letter, position)
+        insertLetter(letter, position, board)
         return
 
 #func to check if space free
-def spaceIsFree(position):
+def spaceIsFree(position, board):
     if board[position] == ' ':
         return True
     else:
         return False
 
 #check for a draw
-def checkDraw():
+def checkDraw(board):
     for key in board.keys():
         if (board[key] == ' '):
             return False
@@ -73,10 +86,7 @@ def initialise_board():
 def main():
     board = initialise_board()
     while not checkForWin(board):
-        playerMove()
-
-    #print("Hello World!")
-
+        playerMove(board)
 
 if __name__ == "__main__":
     main()

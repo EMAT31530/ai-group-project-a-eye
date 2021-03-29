@@ -1,9 +1,5 @@
 #define the board env elements with grid
 # Test for comment - B
-from sys import exit
-import time
-import math
-
 def printBoard(board):
     print(board[1] + '|' + board[2] + '|' + board[3])
     print('-+-+-')
@@ -100,82 +96,114 @@ def playerMove():
 
 #comp move uses minimax algorithm
 def compMove():
-    bestScore = -math.inf
-    alpha = -math.inf
-    beta = math.inf
+    bestScore = -800
     bestMove = 0
-    time1 = time.time()
     for key in board.keys():
         if (board[key] == ' '):
-            board[key] = bot
-            score = minimax(board, 0, alpha, beta, False)
-            board[key] = ' '
+            board[key] = bot #play the move
+
+            print('compmovefunction move:')
+            #print(board)  # nathan added
+            printBoard(board)  # nathan added
+
+            print('call minimax')
+            score = minimax(board, 0, False) #board is 0depth and minimising, output score at end of recursive (should be better than -800)
+            board[key] = ' ' #clear the move
+            print('end of comp move (reached terminal state)')
+            print('compmovefunction bestScore (after comp move done):', bestScore, 'bestMove after comp move:', key)
+            print('next comp move...')
             if (score > bestScore):
                 bestScore = score
-                bestMove = key
-    print(time.time() - time1)
 
+                bestMove = key #if the score is better than -800 then this is now bestscore and bestmove
+    print('final bestscore:',bestScore)
     insertLetter(bot, bestMove)
     return
 
-
-
 #defines minimax algorithm
-def minimax(board, depth,alpha,beta,isMaximizing):
-    #current_depth = 0
-    if (checkWhichMarkWon(bot)):
-        return 1
+def minimax(board, depth, isMaximizing):
+    maxDepth = 0
+    if (checkWhichMarkWon(bot)): #for end states only?
+        print('found a win and do not execute anymore of minimax function for that iteration. Return +1 as score output to previously called minimax')
+        return 1 #so rest of function is not executed as soon as something is returned
     elif (checkWhichMarkWon(player)):
+        print('found a loss and do not execute anymore of minimax function for that iteration. Return -1 as score output to previously called minimax')
         return -1
     elif (checkDraw()):
+        print('found a draw and do not execute anymore of minimax function for that iteration. Return 0 as score output to previously called minimax')
         return 0
 
     if (isMaximizing):
-        bestScore = -math.inf
-
-
+        bestScore = -800
+        print('maximising,','bestScore (before maximising):',bestScore)  # nathan added
         for key in board.keys():
-
             if (board[key] == ' '):
-                board[key] = bot
-                score = minimax(board, depth + 1,alpha, beta, False)
+                board[key] = bot #make the move
 
-                #print(current_depth)
-                #current_depth += 1
-                #print(score,board)
+                print('depth:',depth)# nathan added
+                #print(board) # nathan added
+                printBoard(board)# nathan added
 
-                board[key] = ' '
-                alpha = max(alpha,score )
+                if depth < maxDepth:
+                    print('call minimise')
+                    score = minimax(board, depth + 1, False) #recursive call minimax function but depth +1 and now minimising
+                else:
+                    print('max depth of',maxDepth,'reached')
+                    print('bestScore:',bestScore)
+                    return bestScore
 
-
-
-
-
+                board[key] = ' ' #clear the move
+                print('score after minimax on that key (maximising part):',score)
+                print('current bestScore:', bestScore)
                 if (score > bestScore):
                     bestScore = score
-                if beta <= alpha:
-                    break
+                    print('changed bestScore to:', bestScore)
 
+        print('bestScore (after all moves tried with minimax(maximising part) - propogate score back:', bestScore)  # nathan added
         return bestScore
+
 
     else:
-        bestScore = math.inf
+        bestScore = 800
+
+        print('minimising,','bestScore (before minimising):',bestScore) #nathan added
+
         for key in board.keys():
             if (board[key] == ' '):
-                board[key] = player
-                score = minimax(board, depth + 1,alpha,beta, True)
-                board[key] = ' '
+                board[key] = player #make move (as an o)
+
+                print('depth:', depth)  # nathan added
+                #print(board)#nathan added
+                printBoard(board)#nathan added
+
+                if depth < maxDepth:
+                    print('call maximising')
+                    score = minimax(board, depth + 1, True) #now call mimimax again but maximising (recursive)
+                else:
+                    print('max depth of',maxDepth,'reached')
+                    print('bestScore:',bestScore)
+                    return bestScore
+
+                board[key] = ' ' #clear move
+                print('score after minimax on that key (minimising part):',score)
+                print('current bestScore:', bestScore)
+
                 if (score < bestScore):
                     bestScore = score
-                beta = min(beta,score)
-                if beta <= alpha:
-                    break
+                    print('changed bestScore to:', bestScore)
+
+        print('bestScore (after all moves tried with minimax (minimising part) - propogate score back:', bestScore)  # nathan added
         return bestScore
 
-start_time = time.time()
-board = {1: ' ', 2: ' ', 3: ' ',
-         4: ' ', 5: ' ', 6: ' ',
-         7: ' ', 8: ' ', 9: ' '}
+
+
+#board = {1: ' ', 2: ' ', 3: ' ',
+         #4: ' ', 5: ' ', 6: ' ',
+         #7: ' ', 8: ' ', 9: ' '}
+
+board = {1: 'X', 2: 'X', 3: ' ',
+         4: 'O', 5: 'O', 6: ' ',
+         7: 'X', 8: 'O', 9: ' '}
 
 printBoard(board)
 print("Computer goes first! Good luck with the game!")
@@ -191,11 +219,8 @@ bot = 'X'
 global firstComputerMove
 firstComputerMove = True
 
-while not checkForWin():
-    time1 = time.time()
-  #  print("time:", time.time()-start_time1)
-    compMove()
-    #print("time:", time.time()-time.time1)
-    playerMove()
-    
 
+
+while not checkForWin():
+    compMove()
+    playerMove()

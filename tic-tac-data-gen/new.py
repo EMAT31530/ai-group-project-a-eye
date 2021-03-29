@@ -1,9 +1,8 @@
+import math
+import time
+
 #define the board env elements with grid
 # Test for comment - B
-from sys import exit
-import time
-import math
-
 def printBoard(board):
     print(board[1] + '|' + board[2] + '|' + board[3])
     print('-+-+-')
@@ -26,15 +25,14 @@ def insertLetter(letter, position):
         printBoard(board)
         if (checkDraw()):
             print("Draw!")
-            exit()
+            #exit()
         if checkForWin():
             if letter == 'X':
                 print("Bot wins!")
-                exit()
+                #exit()
             else:
                 print("Player wins!")
-                exit()
-
+                #exit()
         return
 
     else:
@@ -100,29 +98,24 @@ def playerMove():
 
 #comp move uses minimax algorithm
 def compMove():
-    bestScore = -math.inf
-    alpha = -math.inf
-    beta = math.inf
+    bestScore = -800
     bestMove = 0
     time1 = time.time()
     for key in board.keys():
         if (board[key] == ' '):
             board[key] = bot
-            score = minimax(board, 0, alpha, beta, False)
+            score = minimax(board, 0, False)
             board[key] = ' '
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
-    print(time.time() - time1)
 
+    print(time.time() - time1)
     insertLetter(bot, bestMove)
     return
 
-
-
 #defines minimax algorithm
-def minimax(board, depth,alpha,beta,isMaximizing):
-    #current_depth = 0
+def minimax(board, depth, isMaximizing):
     if (checkWhichMarkWon(bot)):
         return 1
     elif (checkWhichMarkWon(player)):
@@ -131,31 +124,14 @@ def minimax(board, depth,alpha,beta,isMaximizing):
         return 0
 
     if (isMaximizing):
-        bestScore = -math.inf
-
-
+        bestScore = - math.inf
         for key in board.keys():
-
             if (board[key] == ' '):
                 board[key] = bot
-                score = minimax(board, depth + 1,alpha, beta, False)
-
-                #print(current_depth)
-                #current_depth += 1
-                #print(score,board)
-
+                score = minimax(board, depth + 1, False)
                 board[key] = ' '
-                alpha = max(alpha,score )
-
-
-
-
-
                 if (score > bestScore):
                     bestScore = score
-                if beta <= alpha:
-                    break
-
         return bestScore
 
     else:
@@ -163,39 +139,29 @@ def minimax(board, depth,alpha,beta,isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = player
-                score = minimax(board, depth + 1,alpha,beta, True)
+                score = minimax(board, depth + 1, True)
                 board[key] = ' '
                 if (score < bestScore):
                     bestScore = score
-                beta = min(beta,score)
-                if beta <= alpha:
-                    break
         return bestScore
+
+def initialise_board():
+    board = {1: ' ', 2: ' ', 3: ' ',
+             4: ' ', 5: ' ', 6: ' ',
+             7: ' ', 8: ' ', 9: ' '}
+    return (board)
 
 start_time = time.time()
 board = {1: ' ', 2: ' ', 3: ' ',
          4: ' ', 5: ' ', 6: ' ',
          7: ' ', 8: ' ', 9: ' '}
 
-printBoard(board)
-print("Computer goes first! Good luck with the game!")
-print("Positions are as follow:")
-print("1, 2, 3 ")
-print("4, 5, 6 ")
-print("7, 8, 9 ")
-print("\n")
-player = 'O'
-bot = 'X'
+def main():
+    while not checkForWin():
+        compMove()
+        playerMove()
 
+if __name__ == "__main__":
+    main()
 
-global firstComputerMove
-firstComputerMove = True
-
-while not checkForWin():
-    time1 = time.time()
-  #  print("time:", time.time()-start_time1)
-    compMove()
-    #print("time:", time.time()-time.time1)
-    playerMove()
-    
 

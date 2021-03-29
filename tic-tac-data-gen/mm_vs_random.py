@@ -25,15 +25,14 @@ def insertLetter(letter, position):
         printBoard(board)
         if (checkDraw()):
             print("Draw!")
-            exit()
+            #exit()
         if checkForWin():
             if letter == 'X':
                 print("Bot wins!")
-                exit()
+                #exit()
             else:
                 print("Player wins!")
-                exit()
-
+                #exit()
         return
 
     else:
@@ -115,8 +114,6 @@ def compMove():
     insertLetter(bot, bestMove)
     return
 
-
-
 #defines minimax algorithm
 def minimax(board, depth, isMaximizing):
     if (checkWhichMarkWon(bot)):
@@ -148,6 +145,12 @@ def minimax(board, depth, isMaximizing):
                     bestScore = score
         return bestScore
 
+def initialise_board():
+    board = {1: ' ', 2: ' ', 3: ' ',
+             4: ' ', 5: ' ', 6: ' ',
+             7: ' ', 8: ' ', 9: ' '}
+    return (board)
+
 start_time = time.time()
 board = {1: ' ', 2: ' ', 3: ' ',
          4: ' ', 5: ' ', 6: ' ',
@@ -163,7 +166,6 @@ print("\n")
 player = 'O'
 bot = 'X'
 
-
 global firstComputerMove
 firstComputerMove = True
 
@@ -171,3 +173,61 @@ while not checkForWin():
     time1 = time.time()
     compMove()
     playerMove()
+
+# itterate = 0
+# def playagain():
+    # while (itterate < 1000):
+        # if (checkDraw()):
+            # return True
+        # if checkForWin():
+            # return True
+        # itterate = itterate + 1
+
+#def main():
+    # print('Welcome to Tic Tac Toe')
+    # print(board)
+    # print("Computer goes first! Good luck with the game!")
+    # print("Positions are as follow:")
+    # print("1, 2, 3 ")
+    # print("4, 5, 6 ")
+    # print("7, 8, 9 ")
+    # print("\n")
+
+def check_board(board):
+    output = ''
+    if checkDraw():
+        output = 'draw'
+    if checkForWin():
+        output = 'win'
+    else
+        output = 'lose'
+
+def main():
+    board = initialise_board()
+
+    # computer does its first move
+    board = compMove(board)
+    board_state = check_board(board)
+
+    while board_state == '':
+        board = playerMove(board)  # give the user the board, they make their move and the board updates
+        board_state = check_board()
+        board = compMove(board)
+        board_state = check_board()
+
+    # If there has been a draw or a win the while loop will end, otherwise it will loop
+    # Now check which player has won
+
+
+
+    winner = 'computer'
+    # winner is the variable that denotes who has won, '[0,1]' 'computer won', 'user won'
+    # if computer has won or the user
+    return (winner)
+
+    winner = checkForWin(board)
+    if winner is True
+
+
+if __name__ == "__main__":
+    winner = play()

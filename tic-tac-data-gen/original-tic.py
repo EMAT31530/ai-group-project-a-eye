@@ -163,7 +163,6 @@ print("\n")
 player = 'O'
 bot = 'X'
 
-
 global firstComputerMove
 firstComputerMove = True
 

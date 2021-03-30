@@ -1,5 +1,6 @@
 import math
 import time
+import random
 
 player = 'O'
 bot = 'X'
@@ -8,6 +9,11 @@ bot = 'X'
 def playerMove(board):
     position = int(input("Enter the position for 'O':  "))
     insertLetter(player, position, board) #where player defines the letter played, bestMove defines the position played in, and board is a required input
+    return
+
+def randMove(board):
+    position = random.randint(1,9)
+    insertLetter2(player, position, board)
     return
 
 #comp move uses minimax algorithm
@@ -110,6 +116,28 @@ def insertLetter(letter, position, board):
         insertLetter(letter, position, board)
         return
 
+#func to insert x or o into free position
+def insertLetter2(letter, position, board):
+    if spaceIsFree(position, board):
+        board[position] = letter
+        printBoard(board)
+        if (checkDraw(board)):
+            print("Draw!")
+            exit()
+        if checkForWin(board):
+            if letter == 'X':
+                print("Bot wins!")
+                exit()
+            else:
+                print("Player wins!")
+                exit()
+        return
+
+    else:
+        position = random.randint(1,9)
+        insertLetter2(letter, position, board)
+        return
+
 #func to check if space free
 def spaceIsFree(position, board):
     if board[position] == ' ':
@@ -154,7 +182,7 @@ def main():
     board = initialise_board()
     while not checkForWin(board):
         compMove(board)
-        playerMove(board)
+        randMove(board)
 
 if __name__ == "__main__":
     main()

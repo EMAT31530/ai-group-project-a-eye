@@ -1,3 +1,6 @@
+import math
+import time
+
 player = 'O'
 bot = 'X'
 

@@ -19,7 +19,7 @@ def spaceIsFree(position):
         return False
 
 #func to insert x or o into free position
-def insertLetter(letter, position):
+def insertLetter(letter, position, board):
     if spaceIsFree(position):
         board[position] = letter
         printBoard(board)

@@ -110,7 +110,6 @@ def compMove():
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
-
     print(time.time() - time1)
     insertLetter(bot, bestMove)
     return

@@ -100,14 +100,11 @@ def insertLetter(letter, position, board):
         printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
-            exit()
         if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
-                exit()
             else:
                 print("Player wins!")
-                exit()
         return
 
     else:

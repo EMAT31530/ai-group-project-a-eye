@@ -78,18 +78,14 @@ def checkWhichMarkWon(mark, board):
     else:
         return False
 
-def printBoard(board) :
-    print('   |   |')
-    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
-    print('   |   |')
-    print('-----------')
-    print('   |   |')
-    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-    print('   |   |')
-    print('-----------')
-    print('   |   |')
-    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-    print('   |   |')
+#define the board env elements with grid
+def printBoard(board):
+    print(board[1] + '|' + board[2] + '|' + board[3])
+    print('-+-+-')
+    print(board[4] + '|' + board[5] + '|' + board[6])
+    print('-+-+-')
+    print(board[7] + '|' + board[8] + '|' + board[9])
+    print("\n")
 
 #func to insert x or o into free position
 def insertLetter(letter, position, board):

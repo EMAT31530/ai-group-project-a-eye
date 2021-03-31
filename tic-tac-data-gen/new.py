@@ -181,9 +181,10 @@ def initialise_board():
 def main():
     board = initialise_board()
     while not checkForWin(board):
-        print('checkforwinnotcompleted')
+        #print('checkforwinnotcompleted')
         compMove(board)
         if not checkForWin(board):
+            #print('checkforwinnotcompleted')
             randMove(board)
 
 if __name__ == "__main__":

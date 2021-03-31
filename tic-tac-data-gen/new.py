@@ -100,11 +100,14 @@ def insertLetter(letter, position, board):
         printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
+            #exit()
         if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
+                #exit()
             else:
                 print("Player wins!")
+                #exit()
         return
 
     else:
@@ -120,14 +123,14 @@ def insertLetter2(letter, position, board):
         printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
-            exit()
+            #exit()
         if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
-                exit()
+                #exit()
             else:
                 print("Player wins!")
-                exit()
+                #exit()
         return
 
     else:
@@ -178,8 +181,11 @@ def initialise_board():
 def main():
     board = initialise_board()
     while not checkForWin(board):
+        print('checkforwinnotcompleted')
         compMove(board)
-        randMove(board)
+        if not checkForWin(board):
+            print('checkforwinnotcompleted')
+            randMove(board)
 
 if __name__ == "__main__":
     main()

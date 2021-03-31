@@ -184,7 +184,6 @@ def main():
         print('checkforwinnotcompleted')
         compMove(board)
         if not checkForWin(board):
-            print('checkforwinnotcompleted')
             randMove(board)
 
 if __name__ == "__main__":

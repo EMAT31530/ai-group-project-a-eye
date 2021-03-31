@@ -98,7 +98,7 @@ def printBoard(board):
 def insertLetter(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
             #exit()
@@ -107,7 +107,7 @@ def insertLetter(letter, position, board):
                 print("Bot wins!")
                 #exit()
             else:
-                print("Player wins!")
+                print("Bot loses!")
                 #exit()
         return
 
@@ -121,7 +121,7 @@ def insertLetter(letter, position, board):
 def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
             #exit()
@@ -130,13 +130,13 @@ def insertLetterRand(letter, position, board):
                 print("Bot wins!")
                 #exit()
             else:
-                print("Player wins!")
+                print("Bot loses!")
                 #exit()
         return
 
     else:
         position = random.randint(1,9)
-        insertLetter2(letter, position, board)
+        insertLetterRand(letter, position, board)
         return
 
 #func to check if space free
@@ -186,7 +186,7 @@ def main():
         compMove(board)
         if not checkForWin(board):
             #print('checkforwinnotcompleted')
-            randMove(board)
+            compMove(board)
 
 if __name__ == "__main__":
     main()

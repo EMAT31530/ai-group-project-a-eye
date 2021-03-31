@@ -11,12 +11,13 @@ def playerMove(board):
     insertLetter(player, position, board) #where player defines the letter played, bestMove defines the position played in, and board is a required input
     return
 
+#func to allow playing a player who places pieces randomly
 def randMove(board):
     position = random.randint(1,9)
-    insertLetter2(player, position, board)
+    insertLetterRand(player, position, board)
     return
 
-#comp move uses minimax algorithm
+#comp move uses minimax algorithm- comp will always = bot
 def compMove(board):
     bestScore = -800
     bestMove = 0
@@ -117,7 +118,7 @@ def insertLetter(letter, position, board):
         return
 
 #func to insert x or o into free position
-def insertLetter2(letter, position, board):
+def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
         printBoard(board)

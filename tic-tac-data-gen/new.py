@@ -1,5 +1,6 @@
 import math
 import time
+import random
 
 player = 'O'
 bot = 'X'
@@ -10,7 +11,13 @@ def playerMove(board):
     insertLetter(player, position, board) #where player defines the letter played, bestMove defines the position played in, and board is a required input
     return
 
-#comp move uses minimax algorithm
+#func to allow playing a player who places pieces randomly
+def randMove(board):
+    position = random.randint(1,9)
+    insertLetterRand(player, position, board)
+    return
+
+#comp move uses minimax algorithm- comp will always = bot
 def compMove(board):
     bestScore = -800
     bestMove = 0
@@ -91,23 +98,45 @@ def printBoard(board):
 def insertLetter(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
-            exit()
+            #exit()
         if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
-                exit()
+                #exit()
             else:
-                print("Player wins!")
-                exit()
+                print("Bot loses!")
+                #exit()
         return
 
     else:
         print("Can't insert there!")
         position = int(input("Please enter new position:  "))
         insertLetter(letter, position, board)
+        return
+
+#func to insert x or o into free position
+def insertLetterRand(letter, position, board):
+    if spaceIsFree(position, board):
+        board[position] = letter
+        #printBoard(board)
+        if (checkDraw(board)):
+            print("Draw!")
+            #exit()
+        if checkForWin(board):
+            if letter == 'X':
+                print("Bot wins!")
+                #exit()
+            else:
+                print("Bot loses!")
+                #exit()
+        return
+
+    else:
+        position = random.randint(1,9)
+        insertLetterRand(letter, position, board)
         return
 
 #func to check if space free
@@ -153,8 +182,11 @@ def initialise_board():
 def main():
     board = initialise_board()
     while not checkForWin(board):
+        #print('checkforwinnotcompleted')
         compMove(board)
-        playerMove(board)
+        if not checkForWin(board):
+            #print('checkforwinnotcompleted')
+            compMove(board)
 
 if __name__ == "__main__":
     main()

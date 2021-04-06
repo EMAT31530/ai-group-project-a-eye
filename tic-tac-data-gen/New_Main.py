@@ -175,13 +175,13 @@ def play():
     # if computer has won or the user
     return (winner)
 
-    def playagain():
-        while (itterate < 1000):
-            if (checkDraw()):
-                return True
-            if checkForWin():
-                return True
-            itterate = itterate + 1
+def playagain():
+    while (itterate < 1000)
+        if (checkDraw())
+            return True
+        if checkForWin()
+            return True
+        itterate = itterate + 1
 
     winner = checkForWin(board)
     if winner is True

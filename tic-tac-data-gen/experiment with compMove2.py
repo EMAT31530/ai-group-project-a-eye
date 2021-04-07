@@ -65,6 +65,54 @@ def minimax(board, depth, isMaximizing):
                     bestScore = score
         return bestScore
 
+#comp move2 uses minimax algorithm- comp2 will always = player
+def compMove2(board):
+    bestScore = -800
+    bestMove = 0
+    #time1 = time.time()
+    for key in board.keys():
+        if (board[key] == ' '):
+            board[key] = player
+            score = minimax(board, 0, False)
+            board[key] = ' '
+            if (score > bestScore):
+                bestScore = score
+                bestMove = key
+    #print(time.time() - time1)
+    insertLetter(player, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
+    return
+
+#defines minimax algorithm
+def minimax(board, depth, isMaximizing):
+    if (checkWhichMarkWon(player, board)):
+        return 1
+    elif (checkWhichMarkWon(bot, board)):
+        return -1
+    elif (checkDraw(board)): #does not need 'mark'- bot/player as an input as only checks if all spaces are full
+        return 0
+
+    if (isMaximizing):
+        bestScore = - math.inf
+        for key in board.keys():
+            if (board[key] == ' '):
+                board[key] = player
+                score = minimax(board, depth + 1, False)
+                board[key] = ' '
+                if (score > bestScore):
+                    bestScore = score
+        return bestScore
+
+    else:
+        bestScore = math.inf
+        for key in board.keys():
+            if (board[key] == ' '):
+                board[key] = bot
+                score = minimax(board, depth + 1, True)
+                board[key] = ' '
+                if (score < bestScore):
+                    bestScore = score
+        return bestScore
+
 def checkWhichMarkWon(mark, board):
     if board[1] == board[2] and board[1] == board[3] and board[1] == mark:
         return True
@@ -107,7 +155,7 @@ def insertLetter(letter, position, board):
                 print("Bot wins!")
                 #exit()
             else:
-                print("Bot loses!")
+                print("Player wins!")
                 #exit()
         return
 
@@ -130,13 +178,13 @@ def insertLetterRand(letter, position, board):
                 print("Bot wins!")
                 #exit()
             else:
-                print("Bot loses!")
+                print("Player wins!")
                 #exit()
         return
 
     else:
         position = random.randint(1,9)
-        insertLetterRand(letter, position, board)
+        insertLetter2(letter, position, board)
         return
 
 #func to check if space free
@@ -186,7 +234,7 @@ def main():
         compMove(board)
         if not checkForWin(board):
             #print('checkforwinnotcompleted')
-            compMove(board)
+            compMove2(board)
 
 if __name__ == "__main__":
     main()

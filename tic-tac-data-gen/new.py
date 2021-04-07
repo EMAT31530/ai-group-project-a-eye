@@ -98,7 +98,7 @@ def printBoard(board):
 def insertLetter(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        #printBoard(board)
+        printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
             #exit()
@@ -121,7 +121,7 @@ def insertLetter(letter, position, board):
 def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        #printBoard(board)
+        printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
             #exit()

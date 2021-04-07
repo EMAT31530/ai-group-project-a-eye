@@ -141,7 +141,7 @@ def minimax(board, depth, isMaximizing):
                 board[key] = bot #make the move
 
                 print('depth:',depth)# nathan added
-                #print(board) # nathan added
+                print(board) # nathan added
                 printBoard(board)# nathan added
 
                 if depth < maxDepth:
@@ -173,7 +173,7 @@ def minimax(board, depth, isMaximizing):
                 board[key] = player #make move (as an o)
 
                 print('depth:', depth)  # nathan added
-                #print(board)#nathan added
+                print(board)#nathan added
                 printBoard(board)#nathan added
 
                 if depth < maxDepth:

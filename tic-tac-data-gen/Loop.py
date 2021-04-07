@@ -1,6 +1,9 @@
 import new
+import time
 
-for i in range(0, 3):
+start = time.time()
+for i in range(0, 5):
     output = new.main()
     print(output)
+print('It took', time.time()-start, "seconds")
 

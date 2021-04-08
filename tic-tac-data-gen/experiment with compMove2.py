@@ -48,10 +48,14 @@ def minimax(board, depth, isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = bot
+                print(board)  # nathan added
                 score = minimax(board, depth + 1, False)
                 board[key] = ' '
+                print('score after minimax on that key (maximising part):',score) #nath
+                print('current bestScore:', bestScore) #nath
                 if (score > bestScore):
                     bestScore = score
+        print('bestScore (after all moves tried with minimax(maximising part) - propogate score back:', bestScore)  # nathan added
         return bestScore
 
     else:
@@ -59,10 +63,14 @@ def minimax(board, depth, isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = player
+                print(board)  # nathan added
                 score = minimax(board, depth + 1, True)
                 board[key] = ' '
+                print('score after minimax on that key (maximising part):',score) #nath
+                print('current bestScore:', bestScore) #nath
                 if (score < bestScore):
                     bestScore = score
+        print('bestScore (after all moves tried with minimax (minimising part) - propogate score back:', bestScore)  # nathan
         return bestScore
 
 #comp move2 uses minimax algorithm- comp2 will always = player

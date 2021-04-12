@@ -50,17 +50,18 @@ def printBoard(board):
 def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
-            exit()
+            #exit()
+        else
         if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
-                exit()
+                #exit()
             else:
                 print("Bot loses!")
-                exit()
+                #exit()
         return
 
     else:
@@ -72,17 +73,17 @@ def insertLetterRand(letter, position, board):
 def insertLetterRand2(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)):
             print("Draw!")
-            exit()
+            #exit()
         if checkForWin(board):
             if letter == 'X':
                 print("Bot wins!")
-                exit()
+                # exit()
             else:
                 print("Bot loses!")
-                exit()
+                # exit()
         return
 
     else:
@@ -90,7 +91,7 @@ def insertLetterRand2(letter, position, board):
         insertLetterRand(letter, position, board)
         return
 
-#func to check if space free
+        #func to check if space free
 def spaceIsFree(position, board):
     if board[position] == ' ':
         return True

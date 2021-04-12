@@ -1,5 +1,3 @@
-#define the board env elements with grid
-# Test for comment - B
 from sys import exit
 import time
 import math

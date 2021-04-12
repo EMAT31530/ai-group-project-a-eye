@@ -11,11 +11,11 @@ for i in range(0, 100):
     output = Random_vs_Random.main()
     print(output)
 
-    if output == ('Bot wins!'):
+    if Random_vs_Random.main() == ('Bot wins!'):
         win = win + 1
-    if output == ('Bot loses!'):
+    if Random_vs_Random.main() == ('Bot loses!'):
         loss = loss + 1
-    if output == ('Draw!'):
+    if Random_vs_Random.main() == ('Draw!'):
         draw = draw + 1
 
 

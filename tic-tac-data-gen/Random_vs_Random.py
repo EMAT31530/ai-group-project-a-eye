@@ -53,25 +53,25 @@ def insertLetterRand(letter, position, board):
         #printBoard(board)
         if (checkDraw(board))and checkForWin(board)==False:
             print("Draw!")
-            output = 'Draw!'
+            output = "Draw!"
             return output
             #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
                     print("Bot wins!")
-                    output = 'Bot wins!'
+                    output = "Bot wins!"
                     return output
                     #exit()
                 else:
                     print("Bot loses!")
-                    output = 'Bot loses!'
+                    output = "Bot loses!"
                     return output
                     #exit()
     else:
         position = random.randint(1,9)
-        insertLetterRand(letter, position, board)
-        return
+        output = insertLetterRand(letter, position, board)
+        return output
 
 #func to insert x or o into free position
 def insertLetterRand2(letter, position, board):
@@ -80,25 +80,25 @@ def insertLetterRand2(letter, position, board):
         #printBoard(board)
         if (checkDraw(board))and checkForWin(board)==False:
             print("Draw!")
-            output = 'Draw!'
+            output = "Draw!"
             return output
             #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
                     print("Bot wins!")
-                    output = 'Bot wins!'
+                    output = "Bot wins!"
                     return output
                     #exit()
                 else:
                     print("Bot loses!")
-                    output = 'Bot loses!'
+                    output = "Bot loses!"
                     return output
                     #exit()
     else:
         position = random.randint(1,9)
-        insertLetterRand(letter, position, board)
-        return
+        output = insertLetterRand(letter, position, board)
+        return output
 
         #func to check if space free
 def spaceIsFree(position, board):

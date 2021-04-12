@@ -1,5 +1,4 @@
 import Random_vs_Random
-import new
 import time
 
 start = time.time()
@@ -11,13 +10,12 @@ for i in range(0, 100):
     output = Random_vs_Random.main()
     print(output)
 
-    if Random_vs_Random.main() == ('Bot wins!'):
+    if output == ('Bot wins!'):
         win = win + 1
-    if Random_vs_Random.main() == ('Bot loses!'):
+    if output == ('Bot loses!'):
         loss = loss + 1
-    if Random_vs_Random.main() == ('Draw!'):
+    if output == ('Draw!'):
         draw = draw + 1
-
 
 print("wins"+str(win))
 print("loses"+str(loss))

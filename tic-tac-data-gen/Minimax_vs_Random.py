@@ -101,24 +101,25 @@ def insertLetter(letter, position, board):
         #printBoard(board)
         if (checkDraw(board)) and checkForWin(board)==False:
             output = "Draw!"
+            # print('Draw!')
             return output
             #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
                     output = "Bot wins!"
-                    #exit()
+                    # print('Bot wins!')
                     return output
                 else:
                     output = "Bot loses!"
-                    #exit()
+                    # print('Bot loses!')
                     return output
 
     else:
         print("Can't insert there!")
         position = int(input("Please enter new position:  "))
-        insertLetter(letter, position, board)
-        return
+        output = insertLetter(letter, position, board)
+        return output
 
 #func to insert x or o into free position
 def insertLetterRand(letter, position, board):
@@ -127,21 +128,24 @@ def insertLetterRand(letter, position, board):
         #printBoard(board)
         if (checkDraw(board)) and checkForWin(board)==False:
             output = "Draw!"
+            # print('Draw!')
             return output
         else:
             if checkForWin(board):
                 if letter == 'X':
+                    #print('Bot wins!')
                     output = "Bot wins!"
                     return output
                     #exit()
                 else:
+                    #print('Bot loses!')
                     output = "Bot loses!"
                     return output
                     #exit()
     else:
         position = random.randint(1,9)
-        insertLetterRand(letter, position, board)
-        return
+        output = insertLetterRand(letter, position, board)
+        return output
 
 #func to check if space free
 def spaceIsFree(position, board):

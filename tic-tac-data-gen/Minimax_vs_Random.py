@@ -14,8 +14,8 @@ def playerMove(board):
 #func to allow playing a player who places pieces randomly
 def randMove(board):
     position = random.randint(1,9)
-    insertLetterRand(player, position, board)
-    return
+    output = insertLetterRand(player, position, board)
+    return output
 
 #comp move uses minimax algorithm- comp will always = bot
 def compMove(board):
@@ -31,8 +31,8 @@ def compMove(board):
                 bestScore = score
                 bestMove = key
     #print(time.time() - time1)
-    insertLetter(bot, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
-    return
+    output = insertLetter(bot, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
+    return output
 
 #defines minimax algorithm
 def minimax(board, depth, isMaximizing):
@@ -98,19 +98,21 @@ def printBoard(board):
 def insertLetter(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)) and checkForWin(board)==False:
-            print("Draw!")
+            output = "Draw!"
+            return output
             #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
-                    print("Bot wins!")
+                    output = "Bot wins!"
                     #exit()
+                    return output
                 else:
-                    print("Bot loses!")
+                    output = "Bot loses!"
                     #exit()
-        return
+                    return output
 
     else:
         print("Can't insert there!")
@@ -122,19 +124,20 @@ def insertLetter(letter, position, board):
 def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
-        printBoard(board)
+        #printBoard(board)
         if (checkDraw(board)) and checkForWin(board)==False:
-            print("Draw!")
-            #exit()
+            output = "Draw!"
+            return output
         else:
             if checkForWin(board):
                 if letter == 'X':
-                    print("Bot wins!")
+                    output = "Bot wins!"
+                    return output
                     #exit()
                 else:
-                    print("Bot loses!")
+                    output = "Bot loses!"
+                    return output
                     #exit()
-        return
 
     else:
         position = random.randint(1,9)
@@ -185,10 +188,11 @@ def main():
     board = initialise_board()
     while not checkForWin(board)== True and checkDraw(board)== False:
         #print('checkforwinnotcompleted')
-        compMove(board)
+        output = compMove(board)
         if not checkForWin(board)== True and checkDraw(board)== False:
             #print('checkforwinnotcompleted')
-            randMove(board)
+            output = randMove(board)
+    return output
 
 if __name__ == "__main__":
     main()

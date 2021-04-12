@@ -8,14 +8,14 @@ bot = 'X'
 #func to allow playing a player who places pieces randomly
 def randMove(board):
     position = random.randint(1,9)
-    insertLetterRand(player, position, board)
-    return
+    output = insertLetterRand(player, position, board)
+    return output
 
 #func to allow playing a player who places pieces randomly
 def randMove2(board):
     position = random.randint(1,9)
-    insertLetterRand2(bot, position, board)
-    return
+    output = insertLetterRand2(bot, position, board)
+    return output
 
 def checkWhichMarkWon(mark, board):
     if board[1] == board[2] and board[1] == board[3] and board[1] == mark:
@@ -51,19 +51,23 @@ def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
         #printBoard(board)
-        if (checkDraw(board)) and checkForWin(board)==False:
+        if (checkDraw(board))and checkForWin(board)==False:
             print("Draw!")
+            output = 'Draw!'
+            return output
             #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
                     print("Bot wins!")
+                    output = 'Bot wins!'
+                    return output
                     #exit()
                 else:
                     print("Bot loses!")
+                    output = 'Bot loses!'
+                    return output
                     #exit()
-        return
-
     else:
         position = random.randint(1,9)
         insertLetterRand(letter, position, board)
@@ -76,17 +80,21 @@ def insertLetterRand2(letter, position, board):
         #printBoard(board)
         if (checkDraw(board))and checkForWin(board)==False:
             print("Draw!")
+            output = 'Draw!'
+            return output
             #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
                     print("Bot wins!")
+                    output = 'Bot wins!'
+                    return output
                     #exit()
                 else:
                     print("Bot loses!")
+                    output = 'Bot loses!'
+                    return output
                     #exit()
-        return
-
     else:
         position = random.randint(1,9)
         insertLetterRand(letter, position, board)
@@ -136,10 +144,11 @@ def main():
     board = initialise_board()
     while not checkForWin(board)== True and checkDraw(board)== False:
         #print('checkforwinnotcompleted')
-        randMove2(board)
+        output = randMove2(board)
         if not checkForWin(board)== True and checkDraw(board)== False:
             #print('checkforwinnotcompleted')
-            randMove(board)
+            output = randMove(board)
+    return output
 
 if __name__ == "__main__":
     main()

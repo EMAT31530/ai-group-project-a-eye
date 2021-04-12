@@ -138,7 +138,6 @@ def insertLetterRand(letter, position, board):
                     output = "Bot loses!"
                     return output
                     #exit()
-
     else:
         position = random.randint(1,9)
         insertLetterRand(letter, position, board)

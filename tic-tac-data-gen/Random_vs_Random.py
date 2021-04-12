@@ -51,17 +51,17 @@ def insertLetterRand(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
         #printBoard(board)
-        if (checkDraw(board)):
+        if (checkDraw(board)) and checkForWin(board)==False:
             print("Draw!")
             #exit()
-        else
-        if checkForWin(board):
-            if letter == 'X':
-                print("Bot wins!")
-                #exit()
-            else:
-                print("Bot loses!")
-                #exit()
+        else:
+            if checkForWin(board):
+                if letter == 'X':
+                    print("Bot wins!")
+                    #exit()
+                else:
+                    print("Bot loses!")
+                    #exit()
         return
 
     else:
@@ -74,16 +74,17 @@ def insertLetterRand2(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
         #printBoard(board)
-        if (checkDraw(board)):
+        if (checkDraw(board))and checkForWin(board)==False:
             print("Draw!")
             #exit()
-        if checkForWin(board):
-            if letter == 'X':
-                print("Bot wins!")
-                # exit()
-            else:
-                print("Bot loses!")
-                # exit()
+        else:
+            if checkForWin(board):
+                if letter == 'X':
+                    print("Bot wins!")
+                    #exit()
+                else:
+                    print("Bot loses!")
+                    #exit()
         return
 
     else:
@@ -133,14 +134,16 @@ def initialise_board():
 
 def main():
     board = initialise_board()
-    while not checkForWin(board):
+    while not checkForWin(board)== True and checkDraw(board)== False:
         #print('checkforwinnotcompleted')
         randMove2(board)
-        if not checkForWin(board):
+        if not checkForWin(board)== True and checkDraw(board)== False:
             #print('checkforwinnotcompleted')
             randMove(board)
 
 if __name__ == "__main__":
     main()
+
+
 
 

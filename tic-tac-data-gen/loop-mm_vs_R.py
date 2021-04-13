@@ -22,3 +22,5 @@ print("wins"+str(win))
 print("loses"+str(loss))
 print("draws"+str(draw))
 print('R vs R took', time.time()-start, "seconds")
+
+

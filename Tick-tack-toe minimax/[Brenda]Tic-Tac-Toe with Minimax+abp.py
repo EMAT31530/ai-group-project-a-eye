@@ -135,7 +135,7 @@ def minimax(board, depth,alpha,beta,isMaximizing):
                 board[key] = bot
                 score = minimax(board, depth + 1,alpha, beta, False)
                 board[key] = ' '
-                alpha = max(alpha,score )
+                alpha = max(alpha,score)
                 if (score > bestScore):
                     bestScore = score
                 if beta <= alpha:

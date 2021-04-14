@@ -21,6 +21,7 @@ def randMove(board):
 def compMove(board):
     bestScore = -800
     bestMove = 0
+    #print('compmove1 used')
     #time1 = time.time()
     for key in board.keys():
         if (board[key] == ' '):
@@ -30,12 +31,14 @@ def compMove(board):
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
+    print(bestMove)
     #print(time.time() - time1)
     insertLetter(bot, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
     return
 
 #defines minimax algorithm
 def minimax(board, depth, isMaximizing):
+    #print('minimax1 used')
     if (checkWhichMarkWon(bot, board)):
         return 1
     elif (checkWhichMarkWon(player, board)):
@@ -48,10 +51,14 @@ def minimax(board, depth, isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = bot
+                #print(board)  # nathan added
                 score = minimax(board, depth + 1, False)
                 board[key] = ' '
+                #print('score after minimax on that key (maximising part):',score) #nath
+                #print('current bestScore:', bestScore) #nath
                 if (score > bestScore):
                     bestScore = score
+        #print('bestScore (after all moves tried with minimax(maximising part) - propogate score back:', bestScore)  # nathan added
         return bestScore
 
     else:
@@ -59,31 +66,38 @@ def minimax(board, depth, isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = player
+                #print(board)  # nathan added
                 score = minimax(board, depth + 1, True)
                 board[key] = ' '
+                #print('score after minimax on that key (maximising part):',score) #nath
+                #print('current bestScore:', bestScore) #nath
                 if (score < bestScore):
                     bestScore = score
+        #print('bestScore (after all moves tried with minimax (minimising part) - propogate score back:', bestScore)  # nathan
         return bestScore
 
 #comp move2 uses minimax algorithm- comp2 will always = player
 def compMove2(board):
     bestScore = -800
     bestMove = 0
+    #print('compmove2 used')
     #time1 = time.time()
     for key in board.keys():
         if (board[key] == ' '):
             board[key] = player
-            score = minimax(board, 0, False)
+            score = minimax2(board, 0, False)
             board[key] = ' '
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
+    print(bestMove)
     #print(time.time() - time1)
     insertLetter(player, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
     return
 
 #defines minimax algorithm
-def minimax(board, depth, isMaximizing):
+def minimax2(board, depth, isMaximizing):
+    #print('minimax2 used')
     if (checkWhichMarkWon(player, board)):
         return 1
     elif (checkWhichMarkWon(bot, board)):
@@ -96,7 +110,7 @@ def minimax(board, depth, isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = player
-                score = minimax(board, depth + 1, False)
+                score = minimax2(board, depth + 1, False)
                 board[key] = ' '
                 if (score > bestScore):
                     bestScore = score
@@ -107,7 +121,7 @@ def minimax(board, depth, isMaximizing):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = bot
-                score = minimax(board, depth + 1, True)
+                score = minimax2(board, depth + 1, True)
                 board[key] = ' '
                 if (score < bestScore):
                     bestScore = score
@@ -147,15 +161,15 @@ def insertLetter(letter, position, board):
     if spaceIsFree(position, board):
         board[position] = letter
         printBoard(board)
-        if (checkDraw(board)):
-            print("Draw!")
+        #if (checkDraw(board)):
+            #print("Draw!")
             #exit()
-        if checkForWin(board):
-            if letter == 'X':
-                print("Bot wins!")
+        #if checkForWin(board):
+            #if letter == 'X':
+                #print("Bot wins!")
                 #exit()
-            else:
-                print("Player wins!")
+            #else:
+                #print("Player wins!")
                 #exit()
         return
 
@@ -189,6 +203,7 @@ def insertLetterRand(letter, position, board):
 
 #func to check if space free
 def spaceIsFree(position, board):
+    #print(position)
     if board[position] == ' ':
         return True
     else:
@@ -227,14 +242,34 @@ def initialise_board():
              4: ' ', 5: ' ', 6: ' ',
              7: ' ', 8: ' ', 9: ' '})
 
+
+def check_game_finished(board):
+    if checkForWin(board) == True:
+        if checkWhichMarkWon('X', board) == True:
+            return 'winner is X'
+        elif checkWhichMarkWon('O', board) == True:
+            return 'winner is O'
+
+    elif checkDraw(board) == True:
+        return 'Draw'
+
+    else:
+        return False
+
+
 def main():
     board = initialise_board()
-    while not checkForWin(board):
-        #print('checkforwinnotcompleted')
-        compMove(board)
-        if not checkForWin(board):
-            #print('checkforwinnotcompleted')
-            compMove2(board)
+    while check_game_finished(board) == False:
+        compMove(board)  # x bot
+        if check_game_finished(board) == False:
+            compMove2(board)  # o player
+        else:
+            print(check_game_finished(board))
+            return
+    else:
+        print(check_game_finished(board))
+        return
+
 
 if __name__ == "__main__":
     main()

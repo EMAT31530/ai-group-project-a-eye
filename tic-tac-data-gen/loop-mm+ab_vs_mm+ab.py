@@ -1,4 +1,4 @@
-import Minimax
+import Minimaxab_vs_Minimaxab
 import time
 import matplotlib.pyplot as plt
 import numpy as np
@@ -9,7 +9,7 @@ loss = 0
 draw = 0
 
 for i in range(0, 1000):
-    output = Minimax_vs_Minimax2.main()
+    output = Minimaxab_vs_Minimaxab.main()
     print(output)
 
     if output == ('Bot wins!'):
@@ -25,7 +25,7 @@ print("loses"+str(loss))
 print("draws"+str(draw))
 print('MM vs MM took', time.time()-start, "seconds")
 
-labels = ['Minimax vs Minimax player']
+labels = ['Minimax+ab vs Minimax+ab player']
 win = [win]
 draw = [draw]
 
@@ -39,7 +39,7 @@ rects2 = ax.bar(x, draw, width, label='Draw')
 rects3 = ax.bar(x + width/2, loss, width, label='Lose')
 
 ax.set_ylabel('No. of Games')
-ax.set_title('Outcome of games of an Intelligent (Minimax) vs Intelligent (Minimax) player')
+ax.set_title('Outcome of games of 2 Intelligent (Minimax) players with alpha-beta pruning')
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.legend()

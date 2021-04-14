@@ -1,6 +1,4 @@
 import math
-import time
-import random
 
 player = 'O'
 bot = 'X'

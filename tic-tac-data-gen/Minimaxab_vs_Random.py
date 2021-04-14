@@ -111,18 +111,17 @@ def insertLetter(letter, position, board):
         #printBoard(board)
         if (checkDraw(board)) and checkForWin(board)==False:
             output = "Draw!"
-            # print('Draw!')
+            print('Draw!')
             return output
-            #exit()
         else:
             if checkForWin(board):
                 if letter == 'X':
                     output = "Bot wins!"
-                    # print('Bot wins!')
+                    print('Bot wins!')
                     return output
                 else:
                     output = "Bot loses!"
-                    # print('Bot loses!')
+                    print('Bot loses!')
                     return output
 
     else:
@@ -138,17 +137,17 @@ def insertLetterRand(letter, position, board):
         #printBoard(board)
         if (checkDraw(board)) and checkForWin(board)==False:
             output = "Draw!"
-            # print('Draw!')
+            print('Draw!')
             return output
         else:
             if checkForWin(board):
                 if letter == 'X':
-                    #print('Bot wins!')
+                    print('Bot wins!')
                     output = "Bot wins!"
                     return output
                     #exit()
                 else:
-                    #print('Bot loses!')
+                    print('Bot loses!')
                     output = "Bot loses!"
                     return output
                     #exit()

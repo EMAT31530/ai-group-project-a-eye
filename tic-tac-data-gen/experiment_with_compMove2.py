@@ -31,7 +31,7 @@ def compMove(board):
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
-    print(bestMove)
+    #print(bestMove)
     #print(time.time() - time1)
     insertLetter(bot, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
     return
@@ -90,7 +90,7 @@ def compMove2(board):
             if (score > bestScore):
                 bestScore = score
                 bestMove = key
-    print(bestMove)
+    #print(bestMove)
     #print(time.time() - time1)
     insertLetter(player, bestMove, board) #where bot defines the letter played, bestMove defines the position played in, and board is a required input
     return

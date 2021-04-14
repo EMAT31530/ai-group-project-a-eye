@@ -1,4 +1,4 @@
-import Minimax_vs_Minimax2
+import Minimax
 import time
 import matplotlib.pyplot as plt
 import numpy as np
@@ -36,7 +36,7 @@ fig, ax = plt.subplots()
 
 rects1 = ax.bar(x - width/2, win, width, label='Win')
 rects2 = ax.bar(x, draw, width, label='Draw')
-rects3 = ax.bar(x + width/3, loss, width, label='Lose')
+rects3 = ax.bar(x + width/2, loss, width, label='Lose')
 
 ax.set_ylabel('No. of Games')
 ax.set_title('Outcome of games of an Intelligent (Minimax) vs Intelligent (Minimax) player')

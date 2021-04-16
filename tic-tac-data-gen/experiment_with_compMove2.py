@@ -246,12 +246,12 @@ def initialise_board():
 def check_game_finished(board):
     if checkForWin(board) == True:
         if checkWhichMarkWon('X', board) == True:
-            return 'winner is X'
+            return 'Bot wins!'
         elif checkWhichMarkWon('O', board) == True:
-            return 'winner is O'
+            return 'Bot loses!'
 
     elif checkDraw(board) == True:
-        return 'Draw'
+        return 'Draw!'
 
     else:
         return False
@@ -264,11 +264,13 @@ def main():
         if check_game_finished(board) == False:
             compMove2(board)  # o player
         else:
-            print(check_game_finished(board))
-            return
+            #print(check_game_finished(board))
+            output = check_game_finished(board)
+            return output
     else:
-        print(check_game_finished(board))
-        return
+        # print(check_game_finished(board))
+        output = check_game_finished(board)
+        return output
 
 
 if __name__ == "__main__":

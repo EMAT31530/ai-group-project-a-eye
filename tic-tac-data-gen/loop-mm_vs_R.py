@@ -8,7 +8,7 @@ win = 0
 loss = 0
 draw = 0
 
-for i in range(0, 1000):
+for i in range(0, 10):
     output = Minimax_vs_Random.main()
     print(output)
 
